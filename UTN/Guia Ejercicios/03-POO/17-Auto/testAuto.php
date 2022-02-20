@@ -41,10 +41,35 @@ include "Auto.php";
     $a4 = new Auto("Ford","Rojo",450);
     // Crear ​un​ objeto ​“Auto”​ utilizando la sobrecarga restante. #
     $a5 = new Auto("Fiat","Verde",125,date_create("2021-03-19"));
-    $arrayAutos = array();
-    $arrayAutos = array_fill($a1,$a2,$a3,$a4,$a5);
-    foreach ($arrayAutos as $item) {
-        Auto_MostrarAuto($item);
-    }
 
+    $a3->AgregarImpuestos(1500);
+    $a4->AgregarImpuestos(1500);
+    $a5->AgregarImpuestos(1500);
+    
+
+    $arrayAutos = array();
+    array_push($arrayAutos,$a1,$a2,$a3,$a4,$a5);    
+
+    $impSumado = Auto::Add($a1,$a2);
+    echo("<br/>El importe del auto 1+auto 2 es: " . $impSumado);
+    if($a1->Equals($a2)){
+        echo("<br/>Auto 1 = Auto 2");
+    }
+    else{
+        echo("<br/>Auto 1 != Auto 2");
+    }
+    if($a1->Equals($a5)) {
+        echo("<br/>Auto 1 = Auto 5");
+    }
+    else{
+        echo("<br/>Auto 1 != Auto 5");
+    }
+    // foreach ($arrayAutos as $item) {
+    //     
+    // }
+    for ($i=0; $i < count($arrayAutos); $i++) { 
+        if($i % 2 == 1){
+            echo(Auto::MostrarAuto($arrayAutos[$i]));
+        }
+    }
 ?>
