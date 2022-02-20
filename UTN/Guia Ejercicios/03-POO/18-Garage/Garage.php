@@ -80,8 +80,9 @@ include "Auto.php";
     public function Add(Auto $a){
         if(!$this->equals($a)){            
             array_push($this->_autos,$a);
+            return true;
         }
-        return 0;
+        return false;
     }
     public function Remove(Auto $a){
         $key = $this->equals($a);
@@ -92,17 +93,6 @@ include "Auto.php";
             // echo(Auto::MostrarAuto($this->_autos[$key]));
             // echo(var_dump("Dsp de eliminar: " .$this->_autos));
             return true;
-            // var_dump(count($this->_autos));
-            // $lengArray = count($this->_autos);
-            // var_dump($this->_autos[]);
-            // for ($i=0; $i < count($this->_autos); $i++) { 
-            //     if($this->_autos[$i]->Equals($a)){
-            //         echo("auto a eliminar: " . Auto::MostrarAuto($this->_autos[$i]));
-            //         unset($this->_autos, $this->_autos[$i]);
-            //         return true;
-            //     }
-            // }
-
         }
         return false;
     }

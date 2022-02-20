@@ -1,5 +1,5 @@
 <?php
-class Auto{
+Class Auto{
     //https://www.php.net/manual/en/function.func-get-args.php
     // property declaration
     private string $_color;
