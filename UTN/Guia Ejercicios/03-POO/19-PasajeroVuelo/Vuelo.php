@@ -8,8 +8,7 @@ require_once("Pasajero.php");
     private int $_cantMaxima;
 
     function __construct()
-    {        
-        
+    {                
 		//obtengo un array con los parámetros enviados a la función
 		$params = func_get_args();
 		//saco el número de parámetros que estoy recibiendo
