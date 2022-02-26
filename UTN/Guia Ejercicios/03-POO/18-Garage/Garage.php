@@ -5,8 +5,7 @@ include "Auto.php";
     private float $_precioPorHora;
     private $_autos =[];
 
-    function __construct()
-	{
+    function __construct(){
         // $this->_autos = array();
 		//obtengo un array con los parámetros enviados a la función
 		$params = func_get_args();

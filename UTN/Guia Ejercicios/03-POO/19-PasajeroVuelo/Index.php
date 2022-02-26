@@ -36,5 +36,6 @@ require_once ("Vuelo.php");
         echo("<br/> No se pudo remover pasajero ");
     }
     $vueloA->MostrarVuelo();
+    
 
 ?>
