@@ -48,7 +48,8 @@
                 $file;
                 $path .= $endFormat;
                 if($append){
-                    $file = fopen($path,"a");                                    
+                    $file = fopen($path,"a");
+                    $data = "\r\n".$data;                                    
                 }
                 else{
                     $file = fopen($path,"w");                    

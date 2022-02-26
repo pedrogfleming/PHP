@@ -1,2 +1,3 @@
-Hi <?php echo htmlspecialchars($_POST['name']); ?>.
-You are <?php echo (int)$_POST['age']; ?> years old.
+Hola <?php echo htmlspecialchars($_POST['nombre']); ?>.
+Tu mail es <?php echo (int)$_POST['mail']; ?> 
+Tu clave es <?php echo (int)$_POST['clave']; ?> 
