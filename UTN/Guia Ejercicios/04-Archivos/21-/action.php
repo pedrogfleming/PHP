@@ -33,6 +33,13 @@ if(isset($_GET['listado'])) {
                     $u = new Usuario($auxStr[0],$auxStr[1],$auxStr[2]);
                     if($u != null)
                     array_push($usuarios,$u);
+                    echo(                    
+                    "<ul>
+                    <li>".$auxStr[0]."</li>
+                    <li>".$auxStr[1]."</li>
+                    <li>".$auxStr[2]."</li>
+                    </ul>"
+                    );
                 }
               }    
             fclose($file);
@@ -40,10 +47,10 @@ if(isset($_GET['listado'])) {
             foreach ($usuarios as $item) {
                 $strUsuarios .= "<br/>".$item->MostrarDatos();
             }
-            if($strUsuarios != "")
-                echo($strUsuarios);
-            else
-                echo("No hay usuarios para mostrar");
+            // if($strUsuarios != "")
+            //     echo($strUsuarios);
+            // else
+            //     echo("No hay usuarios para mostrar");
             break;
         default:
             # code...
