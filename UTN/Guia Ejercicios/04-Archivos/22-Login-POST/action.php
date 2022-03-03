@@ -36,7 +36,6 @@ if(isset($_POST['nombre']) &&
                     case ELogin::ErrorDatos:
                         echo("Error en los datos, revise la clave");
                         return;
-                        break;
                     case ELogin::Inexistente:                        
                         break;
                 }                 
