@@ -33,18 +33,25 @@ $garage->Add($a1);
 $garage->Add($a1); //Repetido
 $garage->Add($a2);
 $garage->Add($a3);
-
+echo "<h1>01 - Garage</h1>";
 echo $garage->MostrarGarage();
-echo("<br/>linea 38<br/>");
-if($garage->Remove($a2)){       //El auto  está en el garage.
+
+
+echo "<h1>02 - ELIMINAREMOS UN AUTO</h1>";
+
+if($garage->Remove($a1)){       //El auto  está en el garage.
     echo("Elemento removido");
 }
 else{
     echo("No existe el elemento a eliminar");
 } 
-echo $garage->MostrarGarage(); //error
 
-if($garage->Remove($a2)){       //El auto no está en el garage.
+echo "<h1>03 - Mostramos el garage despues de eliminar un auto</h1>";
+echo $garage->MostrarGarage();
+
+echo "<h1>04 - Tratamos de eliminar de nuevo un auto q ya no existe en el garage</h1>";
+
+if($garage->Remove($a1)){       //El auto no está en el garage.
     echo("Elemento duplicado fue removido");
 } 
 else{
@@ -52,11 +59,20 @@ else{
 }
 // //var_dump($garage);
 
+echo "<h1>05 - Mostramos otra vez el garage</h1>";
 echo $garage->MostrarGarage();
- echo("<br/>linea 44<br/>");
- $garage->Add($a2);
- echo("<br/>linea 46<br/>");
- echo $garage->MostrarGarage();
+
+echo "<h1>06 - Agregamos el auto eliminado anteriormente a1 </h1>";
+
+ $garage->Add($a1);
+
+
+echo "<h1>07 - Mostramos otra vez el garage</h1>";
+echo $garage->MostrarGarage();
+
+
+// //TODO OK
+
 // //TODO OK
 
 // echo "<p style = 'color:red;' >hola en rojo</p>";

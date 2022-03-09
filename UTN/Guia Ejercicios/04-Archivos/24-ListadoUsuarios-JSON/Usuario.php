@@ -14,11 +14,11 @@ Class Id{
     }
     
 Class Usuario implements \JsonSerializable{
-    public string $_nombre;
-    public string $_mail;
-    public string $_clave;
-    public int $_id;
-    public DateTime $_fechaAlta;
+    private string $_nombre;
+    private string $_mail;
+    private string $_clave;
+    private int $_id;
+    private DateTime $_fechaAlta;
 
 
     function __construct(string $nombre,string $mail,string $clave,

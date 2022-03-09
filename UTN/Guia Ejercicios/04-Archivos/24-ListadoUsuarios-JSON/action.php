@@ -1,12 +1,11 @@
 <?php
 require_once("Usuario.php");
-if(isset($_GET['listado'])) {
-    
+if(isset($_GET['listado'])) {    
     $opcionListado = strtolower($_GET['listado']);
     switch ($opcionListado) {
         case 'usuarios':
             $fileName = 'usuarios.json';
-            //Testing ok
+            //Para guardar en el json unicamente
             // $usuarios = array(
             //     new Usuario("Pedro","pedro@gmail.com","123",1,new DateTime("now")),
             //     new Usuario("Juan","juan@gmail.com","456",2,new DateTime("now")),

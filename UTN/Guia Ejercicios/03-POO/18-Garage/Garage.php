@@ -1,8 +1,8 @@
 <?php
 include "Auto.php";
-   Class Garage{
-    private string $_razonSocial;
-    private float $_precioPorHora;
+Class Garage{
+    private  $_razonSocial;
+    private  $_precioPorHora;
     private $_autos =[];
 
     function __construct(){
@@ -21,13 +21,15 @@ include "Auto.php";
 		}
 	}  
 	//ahora declaro una serie de métodos constructores que aceptan diversos números de parámetros
+    
+    
 	function __construct0()	{
 		$this->__construct1("Default");
 	}	
-    function __construct1(string $_razonSocial){
+    function __construct1( $_razonSocial){
 		$this->__construct2($_razonSocial,0);
 	}		
-    function __construct2(string $_razonSocial,string $_precioPorHora){
+    function __construct2( $_razonSocial, $_precioPorHora){
         $this->_razonSocial = $_razonSocial;
 		$this->_precioPorHora = $_precioPorHora;
         
@@ -48,52 +50,41 @@ include "Auto.php";
         //     }
         return $s;
     }
+    public function getAutos(){
 
-    public function Equals(Auto $a){
-        $aux = array_search($a,$this->_autos);
-        echo($aux);
-        return $aux;
-        //Opcion 1
-        // if(in_array($a,$this->_autos)){
-        //     return true;
-        // }
-        // return false;
-        //Opcion 2
-        // echo("Vardumqp:" . var_dump($this->_autos));
-        // $arrayAux = $this->_autos;
-        // echo("datos>>>:" . var_dump($a));
-        // foreach ($arrayAux as $item) {
-        //     var_dump($item);
-        //     if($item->Equals($a)){
-        //         return true;
-        //     }
-        // }
-        //Opcion 3
-        // foreach ($a as $item) {
-        //     if($item->Equals($a)){
-        //         return true;
-        //     }
-        // }
-        // return false;
-    }    
-    public function Add(Auto $a){
-        if(!$this->equals($a)){            
-            array_push($this->_autos,$a);
-            return true;
-        }
-        return false;
+    return $this->_autos;
     }
-    public function Remove(Auto $a){
-        $key = $this->equals($a);
-        if($key != false){ 
-            // echo(Auto::MostrarAuto($this->_autos[$key]));
-            // echo("Antes de eliminar: " . var_dump($this->_autos));
-            unset($this->_autos[$key]);
-            // echo(Auto::MostrarAuto($this->_autos[$key]));
-            // echo(var_dump("Dsp de eliminar: " .$this->_autos));
-            return true;
-        }
-        return false;
-    }
-   }
+    public function ExistCar(Auto $a){
+
+        return in_array($a, $this->_autos);
+ 
+     }  
+     
+     public function getIndex(Auto $a){
+         echo "<br>0003<br>";
+         return array_search($a,$this->_autos);	
+     }
+     
+     public function Add(Auto $a){
+         if(!$this->ExistCar($a)){          
+             array_push($this->_autos,$a);
+             return true;
+         }
+         return false;
+     }
+     public function Remove(Auto $a){
+     
+     echo "<br>0001<br>";
+ 
+         if (!$this->ExistCar($a)) 
+         {return false;
+ 
+         }
+             echo "<br>0001-a <br>";
+         $index = $this->getIndex($a);
+         echo "<h2> el indice es : ". $index ."</h2>";
+             unset($this->_autos[$index]);
+             return true;
+     }
+}
 ?>
