@@ -9,5 +9,4 @@
     $apellido = "Geraghty Fleming";
     $apellidoNombre = $nombre . ", " . $apellido;
     echo($apellidoNombre);
-    
 ?>

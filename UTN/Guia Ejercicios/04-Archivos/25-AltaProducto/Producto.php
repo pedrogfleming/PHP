@@ -15,19 +15,22 @@ Class Producto implements \JsonSerializable{
     //     'ACTUALIZADO' => 1,
     //     'NULL'=>2     
     // );
-    private string $_codBarra;
-    private string $_nombre;
-    private  string $_tipo;
-    private int $_stock;
-    private float $_precio;
+    public string $_codBarra;
+    public string $_nombre;
+    public  string $_tipo;
+    public int $_stock;
+    public float $_precio;
 
-    function __construct(string $codBarra,string $nombre,
-        string $tipo,string $stock,string $precio){
+    function __construct($codBarra,$nombre,
+        $tipo,$stock,$precio){
              $this->_codBarra = $codBarra;
              $this->_nombre = $nombre;
              $this->_tipo = $tipo;
              $this->_stock = $stock;
              $this->_precio = $precio;
+    }
+    private function AumentarStock(){
+        $this->_stock++;
     }
     public static function Equals(Producto $p1,Producto $p2){
         return $p1->_codBarra == $p2->_codBarra;
@@ -65,14 +68,12 @@ Class Producto implements \JsonSerializable{
         $ret = Producto::ExisteProducto($productos,$p2);
         if($ret == 'inexistente'){
             array_push($producto,$p2);      
-            return "Agregado";                  
+            return "Agregado Producto";                  
         }
         else if($ret == 'existe'){
-            
             $key = array_search($p2,$productos);
-            unset($productos[$key]);
-            array_push($productos,$p2);
-            return  "Modificado";
+            $productos[$key]->AumentarStock();
+            return "Stock Aumentado";
         }
         return null;        
     }

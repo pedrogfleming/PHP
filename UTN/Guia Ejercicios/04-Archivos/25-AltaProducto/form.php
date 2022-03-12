@@ -13,12 +13,11 @@ Hacer los métodos necesarios en la clase
 //====================================================================== -->
 
 <form action="action.php" method="post">
- <p>Codigo de Barra <input type="text" name="codigo de barra" /></p>
+ <p>Codigo de Barra <input type="number" name="codigoBarra" /></p>
  <p>Nombre <input type="text" name="nombre" /></p>
- <p>Clave <input type="text" name="clave" /></p>
  <p>Tipo <input type="text" name="tipo" /></p>
- <p>Stock <input type="text" name="stock" /></p>
- <p>Precio <input type="text" name="precio" /></p>
+ <p>Stock <input type="number" name="stock" /></p>
+ <p>Precio <input type="number" name="precio" /></p>
  <p><input type="submit" /></p>
 </form>
 <p>Recibe los datos del producto por POST:</p>
