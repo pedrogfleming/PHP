@@ -1,8 +1,7 @@
 <p>Volver al menu principal <a href="menuPrincipal.php"> link</a></p>
 <?php
 require_once("Producto.php");
-include 'db.php';
-
+include 'DBManager.php';
 if(isset($_POST['codigoBarra']) ||
     isset($_POST['nombre']) ||
     isset($_POST['tipo']) || 
@@ -25,29 +24,31 @@ if(isset($_POST['codigoBarra']) ||
         //     // echo(fwrite($archivo,$jsonString));
         // }
         // fclose($archivo);  
+
         $codBarra = $_POST['codigoBarra'];
         $nombre = $_POST['nombre'];
         $stock = $_POST['stock'];
         $precio = $_POST['precio'];
         $tipo = $_POST['tipo'];
-        $fechaCreacion = '2022-03-12';       
-
-        $conn = OpenCon();
-        if ($conn->connect_errno) {
-            printf("Connect failed: %s\n", $conn->connect_error);
-            exit();
+        $fechaCreacion = date("Y-m-d");
+        $p = new Producto($codBarra,$nombre,$tipo,$stock,$precio);
+        if($p != null){
+            var_dump($p);
         }
-        $sql = "INSERT INTO producto1 ".
-               "(nombre,tipo, stock,precio,fecha_de_creacion,fecha_de_modificacion) "."VALUES ".
-               "('$nombre','$tipo','$stock','$precio','$fechaCreacion','$fechaCreacion')";
-        if (mysqli_query($conn, $sql)) {
-            echo "New record created successfully";
-            
-        } 
+
+        $productos = DBManager::GetAllRows("producto1");
+        if($productos != null){
+            if(!Producto::ExisteProducto($productos,$p)){
+                if(DBManager::AltaProducto($p)){
+                    echo "Producto dado de alta con éxito";
+                }
+            }
+            else{
+                echo("Ya existe el producto en la base de datos, no se puede dar de alta");
+            }
+        }
         else{
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            echo("Error en los datos ingresados, por favor, vuelva a ingresar el producto");
         }
-        CloseCon($conn);
-
     }
 ?>

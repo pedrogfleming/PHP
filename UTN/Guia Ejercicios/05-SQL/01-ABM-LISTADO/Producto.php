@@ -1,13 +1,13 @@
 <?php
     
-Class Id{
-    private static int $_number = 1;
-        public static Function GetId(){
-            $ret = Id::$_number;
-            Id::$_number++;
-            return $ret;
-        }
-    }
+// Class IdProducto{
+//     private static int $_number = 1;
+//         public static Function GetId(){
+//             $ret = IdProducto::$_number;
+//             IdProducto::$_number++;
+//             return $ret;
+//         }
+//     }
 Class Producto implements \JsonSerializable{
 
     // public $STATUS_PRODUCTO = array(
@@ -15,16 +15,16 @@ Class Producto implements \JsonSerializable{
     //     'ACTUALIZADO' => 1,
     //     'NULL'=>2     
     // );
-    public string $_codBarra;
-    public string $_nombre;
-    public  string $_tipo;
-    public int $_stock;
-    public float $_precio;
-    public Datetime $_fecha_de_creacion;
-    public Datetime $_fecha_de_modificacion;
+    private int $_codBarra;
+    private string $_nombre;
+    private  string $_tipo;
+    private int $_stock;
+    private float $_precio;
+    private Datetime $_fecha_de_creacion;
+    private Datetime $_fecha_de_modificacion;
 
     function __construct($codBarra,$nombre,
-        $tipo,$stock,$precio,$fCreacion,$fModificacion){
+        $tipo,$stock,$precio,$fCreacion = null,$fModificacion = null){
              $this->_codBarra = $codBarra;
              $this->_nombre = $nombre;
              $this->_tipo = $tipo;
@@ -39,6 +39,30 @@ Class Producto implements \JsonSerializable{
              else
                 $this->_fecha_de_modificacion = $fModificacion;
     }
+
+    public function GetCodBarra(){
+        return $this->_codBarra;
+    }
+    public function GetNombre(){
+        return $this->_nombre;
+    }
+    public function GetTipo(){
+        return $this->_tipo;
+    }
+    public function GetStock(){
+        return $this->_stock;
+    }
+    public function GetPrecio(){
+        return $this->_precio;
+    }
+    public function GetFechaCreacion(){
+        return $this->_fecha_de_creacion;
+    }
+    public function GetFechaModificion(){
+        return $this->_fecha_de_modificacion;
+    }
+
+
     private function AumentarStock(){
         $this->_stock++;
     }
@@ -58,13 +82,13 @@ Class Producto implements \JsonSerializable{
         }
         return $jsonString;
     }
-    private static function ExisteProducto($productos,Producto $p2){
+    public static function ExisteProducto($productos,Producto $p2){
         foreach ($productos as $item) {
             if(Producto::Equals($item,$p2)){
-                return "existe";
+                return true;
             }
         }
-        return "inexistente";
+        return false;
     }
     
     /**
@@ -76,11 +100,11 @@ Class Producto implements \JsonSerializable{
      */
     public static function Add($productos,Producto $p2){
         $ret = Producto::ExisteProducto($productos,$p2);
-        if($ret == 'inexistente'){
+        if(!$ret){
             array_push($producto,$p2);      
             return "Agregado Producto";                  
         }
-        else if($ret == 'existe'){
+        else if($ret){
             $key = array_search($p2,$productos);
             $productos[$key]->AumentarStock();
             return "Stock Aumentado";
