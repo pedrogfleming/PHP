@@ -35,12 +35,15 @@ if(isset($_POST['codigoBarra']) ||
         if($p != null){
             var_dump($p);
         }
-
         $productos = DBManager::GetAllRows("producto1");
         if($productos != null){
             if(!Producto::ExisteProducto($productos,$p)){
-                if(DBManager::AltaProducto($p)){
-                    echo "Producto dado de alta con éxito";
+                try {
+                    if(DBManager::AltaProducto($p)){
+                        echo "Producto dado de alta con éxito";
+                    }
+                } catch (\Throwable $th) {
+                    echo("<br>". "Error al querer dar de alta un producto: </br>" . $th . "</br>");
                 }
             }
             else{
