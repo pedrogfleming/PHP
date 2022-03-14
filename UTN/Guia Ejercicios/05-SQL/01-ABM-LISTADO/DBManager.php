@@ -74,6 +74,40 @@ require_once 'Producto.php';
             }
             return false;
         }
+        public static function ModificarProducto(Producto $p){
+            try{
+                    $conn = OpenCon();
+                    if ($conn->connect_errno) {
+                        printf("Connect failed: %s\n", $conn->connect_error);
+                        exit();
+                    }
+                    $codBarra = $p->GetCodBarra();
+                    $nombre = $p->GetNombre();
+                    $tipo = $p->GetTipo();
+                    $stock = $p->GetStock();
+                    $precio = $p->GetPrecio();
+                    $fechaModificacion = date_format($p->GetFechaModificion(),'Y-m-d H:i:s');
+
+                    $sql = "UPDATE producto1 ".
+                            "SET nombre = '$nombre',tipo = '$tipo',stock ='$stock',
+                            precio ='$precio',fecha_de_modificacion = '$fechaModificacion'                            
+                            WHERE cod_barra = '$codBarra'";
+
+                    if(mysqli_query($conn, $sql)){
+                            return true;
+                        } 
+                    else{                            
+                        throw new DBException("Error: " . $sql . "<br>" . mysqli_error($conn), 1);
+                    }     
+            }
+            catch (\Throwable $th) {
+                throw new Exception($th,0);
+            }
+            finally{
+                CloseCon($conn);
+            }
+            return false;
+        }
     }
     
 
