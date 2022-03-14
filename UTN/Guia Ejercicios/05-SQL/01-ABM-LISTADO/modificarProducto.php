@@ -1,9 +1,9 @@
 <p>Volver al menu principal <a href="menuPrincipal.php"> link</a></p>
-<p>Volver al menu de Productos <a href="Vistas/formProducto.php"> link</a></p>
+<p>Volver al menu de Productos <a href="formProducto.php"> link</a></p>
 
 <?php
 require_once("Producto.php");
-include 'Base de datos/DBManager.php';
+include 'DBManager.php';
 if(isset($_POST['codigoBarra']) ||
     isset($_POST['nombre']) ||
     isset($_POST['tipo']) || 
