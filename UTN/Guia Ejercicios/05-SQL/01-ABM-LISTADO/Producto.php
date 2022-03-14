@@ -23,8 +23,8 @@ Class Producto implements \JsonSerializable{
     private Datetime $_fecha_de_creacion;
     private Datetime $_fecha_de_modificacion;
 
-    function __construct($codBarra,$nombre,
-        $tipo,$stock,$precio,$fCreacion = null,$fModificacion = null){
+    function __construct($codBarra,$nombre ="",
+        $tipo="",$stock=0,$precio=0,$fCreacion = null,$fModificacion = null){
              $this->_codBarra = $codBarra;
              $this->_nombre = $nombre;
              $this->_tipo = $tipo;

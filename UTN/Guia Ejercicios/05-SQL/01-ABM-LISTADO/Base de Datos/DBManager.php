@@ -108,6 +108,30 @@ require_once 'Producto.php';
             }
             return false;
         }
+        public static function EliminarProducto(Producto $p){
+            try{
+                    $conn = OpenCon();
+                    if ($conn->connect_errno) {
+                        printf("Connect failed: %s\n", $conn->connect_error);
+                        exit();
+                    }
+                    $codBarra = $p->GetCodBarra();
+                    $sql = "DELETE FROM producto1 "."WHERE cod_barra = '$codBarra'";
+                    if(mysqli_query($conn, $sql)){
+                            return true;
+                        } 
+                    else{                            
+                        throw new DBException("Error: " . $sql . "<br>" . mysqli_error($conn), 1);
+                    }     
+            }
+            catch (\Throwable $th) {
+                throw new Exception($th,0);
+            }
+            finally{
+                CloseCon($conn);
+            }
+            return false;
+        }
     }
     
 
