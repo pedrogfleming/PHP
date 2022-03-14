@@ -217,6 +217,31 @@ require_once 'Producto.php';
             }
             return false;
         }
+        public static function EliminarUsuario(Usuario $u){
+            try{
+                    $conn = OpenCon();
+                    if ($conn->connect_errno) {
+                        printf("Connect failed: %s\n", $conn->connect_error);
+                        exit();
+                    }
+                    $mail = $u->GetMail();
+                    $sql = "DELETE FROM usuario1 "."WHERE mail = '$mail'";
+
+                    if(mysqli_query($conn, $sql)){
+                            return true;
+                        } 
+                    else{                            
+                        throw new DBException("Error: " . $sql . "<br>" . mysqli_error($conn), 1);
+                    }     
+            }
+            catch (\Throwable $th) {
+                throw new Exception($th,0);
+            }
+            finally{
+                CloseCon($conn);
+            }
+            return false;
+        }
     }
     
 
