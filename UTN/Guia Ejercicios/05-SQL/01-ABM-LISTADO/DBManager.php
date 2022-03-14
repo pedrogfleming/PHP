@@ -7,18 +7,18 @@ require_once 'Producto.php';
         public static  $conn;
         /**
          * Get all rows in a SQL Table 
-         * @param $tableName its the name of the table where you have the data to read
+         * @param $nombreTabla its the name of the table where you have the data to read
          * return null if couldn't get any row
          * return an array of objects of all the table´s rows
          */
-        public static function GetAllRows($tableName){
+        public static function GetProductos($nombreTabla){
             $ret = [];
             $conn = OpenCon();
             if ($conn->connect_errno) {
                 printf("Connect failed: %s\n", $conn->connect_error);
                 exit();
             }
-            $sql = "SELECT * FROM $tableName";
+            $sql = "SELECT * FROM $nombreTabla";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 // output data of each row
@@ -117,6 +117,91 @@ require_once 'Producto.php';
                     }
                     $codBarra = $p->GetCodBarra();
                     $sql = "DELETE FROM producto1 "."WHERE cod_barra = '$codBarra'";
+                    if(mysqli_query($conn, $sql)){
+                            return true;
+                        } 
+                    else{                            
+                        throw new DBException("Error: " . $sql . "<br>" . mysqli_error($conn), 1);
+                    }     
+            }
+            catch (\Throwable $th) {
+                throw new Exception($th,0);
+            }
+            finally{
+                CloseCon($conn);
+            }
+            return false;
+        }
+        public static function GetUsuarios($nombreTabla){
+            $ret = [];
+            $conn = OpenCon();
+            if ($conn->connect_errno) {
+                printf("Connect failed: %s\n", $conn->connect_error);
+                exit();
+            }
+            $sql = "SELECT * FROM $nombreTabla";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                    $p = new Usuario($row["clave"],$row["mail"],$row["nombre"],$row["apellido"],
+                        new Datetime($row["fecha_de_registro"]));
+                    array_push($ret,$p);
+            }
+            } else {
+                return null;
+            }
+            return $ret;
+            CloseCon($conn);
+        }
+        public static function AltaUsuario(Usuario $u){
+            try {
+                    $conn = OpenCon();
+                    if ($conn->connect_errno) {
+                        printf("Connect failed: %s\n", $conn->connect_error);
+                        exit();
+                    }
+                    $nombre = $u->GetNombre();
+                    $apellido = $u->GetApellido();
+                    $clave = $u->GetClave();
+                    $mail = $u->GetMail();
+                    $fechaAlta = date_format($u->GetFechaAlta(),'Y-m-d H:i:s');
+
+                    $sql = "INSERT INTO usuario1 ".
+                            "(nombre, apellido,clave,mail,fecha_de_registro) "."VALUES ".
+                            "('$nombre','$apellido','$clave','$mail','$fechaAlta')";
+                    if (mysqli_query($conn, $sql)) { 
+                        return true;
+                    } 
+                else{
+                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    throw new DBException("Error: " . $sql . "<br>" . mysqli_error($conn), 1);
+                }            
+                
+            } catch (\Throwable $th) {
+                throw new Exception($th,0);
+            }
+            finally{
+                CloseCon($conn);
+            }
+            return false;
+        }
+        public static function ModificarUsuario(Usuario $u){
+            try{
+                    $conn = OpenCon();
+                    if ($conn->connect_errno) {
+                        printf("Connect failed: %s\n", $conn->connect_error);
+                        exit();
+                    }
+                    $nombre = $u->GetNombre();
+                    $apellido = $u->GetApellido();
+                    $clave = $u->GetClave();
+                    $mail = $u->GetMail();
+
+                    $sql = "UPDATE usuario1 ".
+                            "SET nombre = '$nombre',apellido = '$apellido',clave ='$clave'
+                            WHERE mail = '$mail'";
+
                     if(mysqli_query($conn, $sql)){
                             return true;
                         } 

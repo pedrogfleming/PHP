@@ -35,7 +35,7 @@ if(isset($_POST['codigoBarra']) ||
         if($p != null){
             var_dump($p);
         }
-        $productos = DBManager::GetAllRows("producto1");
+        $productos = DBManager::GetProductos("producto1");
         if($productos != null){
             if(!Producto::ExisteProducto($productos,$p)){
                 try {

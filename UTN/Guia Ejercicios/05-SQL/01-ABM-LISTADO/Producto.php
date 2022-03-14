@@ -67,7 +67,7 @@ Class Producto implements \JsonSerializable{
         $this->_stock++;
     }
     public static function Equals(Producto $p1,Producto $p2){
-        return $p1->_codBarra == $p2->_codBarra;
+        return $p1->GetCodBarra() == $p2->GetCodBarra();
     }
     public function jsonSerialize(){
         return get_object_vars($this);
