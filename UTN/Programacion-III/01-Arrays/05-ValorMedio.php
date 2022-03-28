@@ -8,8 +8,15 @@
 // Ejemplo 1: $a = 6; $b = 9; $c = 8; => se muestra 8.
 // Ejemplo 2: $a = 5; $b = 1; $c = 5; => se muestra un mensaje “No hay valor del medio”
 //======================================================================
-$a = 111;
-$b = 121;
+// 1   5   3     el 3 es del medio
+// 5   1   5   no hay numero del medio
+// 3  5   1     el 3 es del medio
+// 3   1   5    el 3 es del medio
+// 5   3   1    el 3 es del medio
+// 1  5  1    no hay numero del medio
+
+$a = 1;
+$b = 5;
 $c = 1;
 $array = array($a,$b,$c);
 sort($array);

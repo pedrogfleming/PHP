@@ -1,8 +1,8 @@
 <?php 
 //======================================================================
-// Realizar las líneas de código necesarias para generar un Array asociativo $lapicera,
-// que contenga como elementos: "‘"color’, "‘"marca’, "‘"trazo’ y "‘"precio’.
-// Crear, cargar y mostrar tres lapiceras.
+// Realizar las líneas de código necesarias para generar un Array asociativo
+// y otro indexado que contengan como elementos tres Arrays del punto anterior cada uno.
+// Crear, cargar y mostrar los Arrays de Arrays.
 //======================================================================
 $lapicera1= array(
     "color" => "Verde",
@@ -20,14 +20,13 @@ $lapicera3= array(
     "marca" => "Marca China",
     "trazo" => "mediana",
     "precio" => 20,);
-$lapiceras=array();
-array_push($lapiceras,$lapicera1,$lapicera2,$lapicera3);
-foreach ($lapiceras as $arrayAux) {
-    foreach($arrayAux as $key => $value)
-    {
-        echo($value);
-        ?><br/>
-        <?php 
-    }
+
+$cartuchera=array();
+array_push($cartuchera,$lapicera1,$lapicera2,$lapicera3);
+foreach ($cartuchera as $lapicera) {
+    echo $lapicera["color"] . " " . $lapicera["marca"] . " " . $lapicera["trazo"] . " " . $lapicera["precio"];
+    ?><br/>
+    <?php 
 }
+
 ?>

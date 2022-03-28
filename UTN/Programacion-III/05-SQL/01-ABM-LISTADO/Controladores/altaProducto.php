@@ -1,7 +1,7 @@
-<p>Volver al menu principal <a href="menuPrincipal.php"> link</a></p>
+<p>Volver al menu principal <a href="Vistas/menuPrincipal.php"> link</a></p>
 <?php
-require_once("Producto.php");
-include 'DBManager.php';
+require_once("Modelo/Producto.php");
+require_once ('Modelo/DBManager.php');
 if(isset($_POST['codigoBarra']) ||
     isset($_POST['nombre']) ||
     isset($_POST['tipo']) || 
@@ -32,26 +32,12 @@ if(isset($_POST['codigoBarra']) ||
         $tipo = $_POST['tipo'];
         $fechaCreacion = date("Y-m-d");
         $p = new Producto($codBarra,$nombre,$tipo,$stock,$precio);
-        if($p != null){
-            var_dump($p);
-        }
-        $productos = DBManager::GetProductos("producto1");
-        if($productos != null){
-            if(!Producto::ExisteProducto($productos,$p)){
-                try {
-                    if(DBManager::AltaProducto($p)){
-                        echo "Producto dado de alta con éxito";
-                    }
-                } catch (\Throwable $th) {
-                    echo("<br>". "Error al querer dar de alta un producto: </br>" . $th . "</br>");
-                }
+        try {
+            if(Producto::AltaProducto($p)){
+                echo "Producto dado de alta con éxito";                
             }
-            else{
-                echo("Ya existe el producto en la base de datos, no se puede dar de alta");
-            }
-        }
-        else{
-            echo("Error en los datos ingresados, por favor, vuelva a ingresar el producto");
+        } catch (\Throwable $th) {
+            echo("<br>". "Error al querer dar de alta un producto: </br>" . $th . "</br>");
         }
     }
 ?>

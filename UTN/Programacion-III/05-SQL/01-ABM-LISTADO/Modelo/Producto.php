@@ -111,6 +111,85 @@ Class Producto implements \JsonSerializable{
         }
         return null;        
     }
+    public static function GetProductos(){
+        try {
+            
+            $sql = "SELECT * FROM productos";
+            $result = DBManager::Query($sql);
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                    $p = new Producto(intval($row["cod_barra"]),$row["nombre"],$row["tipo"],
+                        (int)$row["stock"],(float)$row["precio"],
+                        new DateTime($row["fecha_de_creacion"]),new DateTime($row["fecha_de_modificacion"]));
+                        array_push($ret,$p);
+            }
+            } else {
+                return null;
+            }
+            return $ret;
+        } catch (\Throwable $th) {            
+            throw new Exception($th,0);
+        }
+    }    
+    public static function AltaProducto(Producto $p){  
+        try {
+                $codBarra = $p->GetCodBarra();
+                $nombre = $p->GetNombre();
+                $tipo = $p->GetTipo();
+                $stock = $p->GetStock();
+                $precio = $p->GetPrecio();
+                $fechaCreacion = date_format($p->GetFechaCreacion(),'Y-m-d H:i:s');
+                $fechaModificacion = date_format($p->GetFechaModificion(),'Y-m-d H:i:s');
+                $sql = "INSERT INTO productos ".
+                        "(nombre,tipo, stock,precio,fecha_de_creacion,fecha_de_modificacion,cod_barra) "."VALUES ".
+                        "('$nombre','$tipo','$stock','$precio','$fechaCreacion','$fechaModificacion','$codBarra')";
+                if (DBManager::Query($sql)) { 
+                    return true;
+                } 
+                else{
+                    throw new DBException("Error: " . $sql . "<br>" . mysqli_error($conn), 1);
+                }          
+        } catch (\Throwable $th) {
+            throw new Exception($th,0);
+        }
+    }
+    public static function ModificarProducto(Producto $p){
+        try {
+            $codBarra = $p->GetCodBarra();
+            $nombre = $p->GetNombre();
+            $tipo = $p->GetTipo();
+            $stock = $p->GetStock();
+            $precio = $p->GetPrecio();
+            $fechaModificacion = date_format($p->GetFechaModificion(),'Y-m-d H:i:s');
+            $sql = "UPDATE productos ".
+                    "SET nombre = '$nombre',tipo = '$tipo',stock ='$stock',
+                    precio ='$precio',fecha_de_modificacion = '$fechaModificacion'                            
+                    WHERE cod_barra = '$codBarra'";
+            if(DBManager::Query($sql)){
+                return true;
+            } 
+            else{                            
+                throw new DBException("Error: " . $sql . "<br>" . mysqli_error($conn), 1);
+            }     
+        } catch (\Throwable $th) {
+            throw new Exception($th,0);
+        }
+    }
+    public static function EliminarProducto(Producto $p){        
+        try {
+            $codBarra = $p->GetCodBarra();
+            $sql = "DELETE FROM productos WHERE cod_barra = '$codBarra'";
+            if(DBManager::Query($sql)){
+                return true;
+            } 
+            else{                            
+                throw new DBException("Error: " . $sql . "<br>" . mysqli_error($conn), 1);
+            }     
+        }catch (\Throwable $th) {
+            throw new Exception($th,0);
+        }
+    }
 
 }
 
