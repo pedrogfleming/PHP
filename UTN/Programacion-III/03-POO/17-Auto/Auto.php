@@ -6,7 +6,7 @@ class Auto{
     private float $_precio;
     private string $_marca;
     private DateTime $_fecha;
-
+    
     function __construct()
 	{
 		//obtengo un array con los parámetros enviados a la función
@@ -35,11 +35,16 @@ class Auto{
     function __construct3(string $marca,string $color,float $precio){
         $this->__construct4($marca,$color,$precio,date_create("now"));
     }
-    function __construct4(string $marca,string $color,float $precio,DateTime $fecha){
+    function __construct4(string $marca,string $color,float $precio,DateTime $fecha = null){
         $this->_marca = $marca;
 		$this->_color = $color;
         $this->_precio = $precio;
-        $this->_fecha = $fecha;
+        if(fecha != null){
+            $this->_fecha = $fecha;
+        }
+        else{
+            $this->_fecha = new DateTime(date);
+        }
     }
     public function AgregarImpuestos(float $imp){
         $this->_precio += $imp;

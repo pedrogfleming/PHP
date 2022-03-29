@@ -64,9 +64,6 @@ include "Auto.php";
     else{
         echo("<br/>Auto 1 != Auto 5");
     }
-    // foreach ($arrayAutos as $item) {
-    //     
-    // }
     for ($i=0; $i < count($arrayAutos); $i++) { 
         if($i % 2 == 1){
             echo(Auto::MostrarAuto($arrayAutos[$i]));
