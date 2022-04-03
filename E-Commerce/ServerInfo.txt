@@ -1,0 +1,33 @@
+url: http://localhost:3000/E-Commerce/usuario/100
+
+DOCUMENT_ROOT contiene: C:\PHP
+REMOTE_ADDR contiene: ::1
+REMOTE_PORT contiene: 65007
+SERVER_SOFTWARE contiene: PHP 7.4.28 Development Server
+SERVER_PROTOCOL contiene: HTTP/1.1
+SERVER_NAME contiene: localhost
+SERVER_PORT contiene: 3000
+REQUEST_URI contiene: /E-Commerce/usuario/100
+REQUEST_METHOD contiene: GET
+SCRIPT_NAME contiene: /E-Commerce/index.php
+SCRIPT_FILENAME contiene: C:\PHP\E-Commerce\index.php
+PATH_INFO contiene: /usuario/100
+PHP_SELF contiene: /E-Commerce/index.php/usuario/100
+HTTP_HOST contiene: localhost:3000
+HTTP_CONNECTION contiene: keep-alive
+HTTP_CACHE_CONTROL contiene: max-age=0
+HTTP_SEC_CH_UA contiene: " Not A;Brand";v="99", "Chromium";v="100", "Google Chrome";v="100"
+HTTP_SEC_CH_UA_MOBILE contiene: ?0
+HTTP_SEC_CH_UA_PLATFORM contiene: "Windows"
+HTTP_UPGRADE_INSECURE_REQUESTS contiene: 1
+HTTP_USER_AGENT contiene: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36
+HTTP_ACCEPT contiene: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+HTTP_SEC_FETCH_SITE contiene: none
+HTTP_SEC_FETCH_MODE contiene: navigate
+HTTP_SEC_FETCH_USER contiene: ?1
+HTTP_SEC_FETCH_DEST contiene: document
+HTTP_ACCEPT_ENCODING contiene: gzip, deflate, br
+HTTP_ACCEPT_LANGUAGE contiene: es-US,es;q=0.9,en-US;q=0.8,en;q=0.7
+HTTP_COOKIE contiene: __RequestVerificationToken_L1Npc2UzR0JFUHJ1ZGVudGlhbERlc2E1=RpPdLPogZpbzZ6IfJxRmMDRZ__ZVZXKLsLnLNhA-PZMoYOh-FzmcwJxxq8falUi_cJYPEvFrJnBYw9kqUE3INETnuuElsI8-ED2HRr4NkF81; ASP.NET_SessionId=kfjgjozerjt0fupvxkp2haam; __RequestVerificationToken_L1NJU0UzR0JFTEJDUFJPRA2=Ztgq-Qhob7sKslLgmAhu8aqfV9f_Rlweu8fMq-NsdA1Vm3sBvpQwkPaicG40OTUuEF2EbP5X1sWqg4LRAjnAJuPeyqw1; .CustomCookie=A95519E406D6093B72918FE35309E1B75DA4669BA425059769558EF9E0D4C72D18A23C2DCC6FEE1016B055B104B583B36419B53451E49D490E41579A0A847499774E0BC2A1575446589759B0DFA70C14085E1688EDB687E94A2EB54A79036A0F
+REQUEST_TIME_FLOAT contiene: 1648952651.9739
+REQUEST_TIME contiene: 1648952651

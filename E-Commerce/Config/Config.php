@@ -1,6 +1,9 @@
 <?php
 //Here we are gonna create the global variables to access the database
 const BASE_URL = "http://localhost:8080/tienda_virtual/";
+const LIBS = "Libraries/";
+const VIEWS = "Views/";
+
 //Conection data to DataBaseDB
 const DB_HOST = "localhost";
 const DB_NAME = "tienda";
