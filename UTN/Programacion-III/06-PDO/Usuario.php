@@ -1,32 +1,21 @@
 <?php
-    // enum ELogin: int{
-    //     case Verificado = 1;
-    //     case ErrorDatos = 2;
-    //     case Inexistente = 3;
-    //     };
-Class Id{
-    private static int $_number = 1;
-        public static Function GetId(){
-            $ret = Id::$_number;
-            Id::$_number++;
-            return $ret;
-        }
-    }
-    
 Class Usuario implements \JsonSerializable{
     private string $_nombre;
+    private string $_apellido;
     private string $_mail;
     private string $_clave;
+    private string $_localidad;
     private int $_id;
     private DateTime $_fechaAlta;
 
 
-    function __construct(string $nombre,string $mail,string $clave,DateTime $fechaAlta){
+    function __construct(string $nombre,string $apellido,string $mail,string $clave,DateTime $fechaAlta,$_localidad){
         $this->_nombre = $nombre;
         $this->_mail = $mail;
         $this->_clave = $clave;
         $this->_fechaAlta = $fechaAlta;
-        $this->_id = Id::GetId();
+        $this->_apellido = $apellido;
+        $this->_localidad = $_localidad;
     }
     public function jsonSerialize(){
         return get_object_vars($this);
@@ -86,14 +75,14 @@ Class Usuario implements \JsonSerializable{
      * @return -1 si coincide el mail pero no la clave
      * return bool
      */
-    public static function Verificar(Usuario $u1,Usuario $u2):ELogin{
+    public static function Verificar(Usuario $u1,Usuario $u2){
         if($u1->_mail == $u2->_mail){
             if($u1->_clave == $u2->_clave){                 
-                return ELogin::Verificado;
+                return true;
             }
-            return ELogin::ErrorDatos;
+            return -1;
         }
-        return ELogin::Inexistente;
+        return false;
     }
 }
 

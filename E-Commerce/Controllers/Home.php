@@ -1,8 +1,8 @@
 <?php
-// include_once('Libraries/Core/Controllers.php');
-Class Home{
+include_once('Libraries/Controllers.php');
+Class Home extends Controllers{
     public function __construct(){
-        // parent::__construct();
+        parent::__construct();
     }
     public function Home(){        
         $data['page_id'] = 1;
@@ -28,6 +28,10 @@ Class Home{
     }
     public function Datos($datos){
         echo $datos;
+    }
+    public function Carrito($datos){
+        $carrito = $this->model->getCarrito($datos);
+        echo $carrito;
     }
 }
 
